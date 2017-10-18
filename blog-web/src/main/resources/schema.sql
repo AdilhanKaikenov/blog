@@ -26,10 +26,9 @@ CREATE TABLE `category` (
 );
 
 CREATE TABLE `blog_category_assignment` (
-  id int NOT NULL AUTO_INCREMENT UNIQUE,
   `blog_id` INT NOT NULL,
   `category_id` INT NOT NULL,
-  PRIMARY KEY (id)
+  CONSTRAINT blog_category_assignment_id_pk PRIMARY KEY (blog_id, category_id)
 );
 
 CREATE TABLE `comment` (
