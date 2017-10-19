@@ -21,7 +21,7 @@ CREATE TABLE `blog` (
 
 CREATE TABLE `category` (
   id int NOT NULL AUTO_INCREMENT UNIQUE,
-  `name` VARCHAR(30) NOT NULL,
+  `genre` VARCHAR(30) NOT NULL,
   PRIMARY KEY (id)
 );
 
