@@ -6,12 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "blog")
-public class Blog {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private int id;
+public class Blog extends AbstractEntity {
 
     @Column(name = "title")
     private String title;
@@ -27,14 +22,6 @@ public class Blog {
             joinColumns = {@JoinColumn(name = "blog_id")},
             inverseJoinColumns = {@JoinColumn(name = "category_id")})
     private Set<Category> categories = new HashSet<>();
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -66,25 +53,5 @@ public class Blog {
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Blog blog = (Blog) o;
-
-        if (id != blog.id) return false;
-        if (!title.equals(blog.title)) return false;
-        return content.equals(blog.content);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + title.hashCode();
-        result = 31 * result + content.hashCode();
-        return result;
     }
 }
