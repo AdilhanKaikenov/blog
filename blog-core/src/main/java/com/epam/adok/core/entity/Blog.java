@@ -1,6 +1,7 @@
 package com.epam.adok.core.entity;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,11 +18,12 @@ public class Blog extends AbstractEntity {
     @Column(name = "user_id")
     private User author;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "blog_category_assignment",
-            joinColumns = {@JoinColumn(name = "blog_id")},
-            inverseJoinColumns = {@JoinColumn(name = "category_id")})
-    private Set<Category> categories = new HashSet<>();
+    @OneToMany(mappedBy = "primaryKey.blog",
+            cascade = CascadeType.ALL)
+    private Set<BlogCategoryAssignment> blogCategoryAssignments = new HashSet<>();
+
+    @Column(name = "publication_date")
+    private Timestamp publicationDate;
 
     public String getTitle() {
         return title;
@@ -47,11 +49,19 @@ public class Blog extends AbstractEntity {
         this.author = author;
     }
 
-    public Set<Category> getCategories() {
-        return categories;
+    public Set<BlogCategoryAssignment> getBlogCategoryAssignments() {
+        return blogCategoryAssignments;
     }
 
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
+    public void setBlogCategoryAssignments(Set<BlogCategoryAssignment> blogCategoryAssignments) {
+        this.blogCategoryAssignments = blogCategoryAssignments;
+    }
+
+    public Timestamp getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(Timestamp publicationDate) {
+        this.publicationDate = publicationDate;
     }
 }
