@@ -1,6 +1,5 @@
 package com.epam.adok.core.entity.comment;
 
-import com.epam.adok.core.entity.AbstractEntity;
 import com.epam.adok.core.entity.Blog;
 
 import javax.persistence.Column;
@@ -8,8 +7,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("blog_type")
-public class BlogComment extends AbstractEntity {
+@DiscriminatorValue("BT")
+public class BlogComment extends AbstractComment {
 
     @Column(name = "blog_id")
     private Blog blog;

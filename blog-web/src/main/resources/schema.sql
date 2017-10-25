@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS blog;
-DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS blog_category_assignment;
 DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS blog;
+DROP TABLE IF EXISTS user;
 
 CREATE TABLE `user` (
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
@@ -43,7 +43,7 @@ CREATE TABLE `comment` (
   `user_id` INT NOT NULL,
   `text` VARCHAR(300) NOT NULL,
   `comment_date` TIMESTAMP NOT NULL,
-  `comment_type` VARCHAR(20) NOT NULL,
+  `comment_type` VARCHAR(5) NOT NULL,
   PRIMARY KEY (id)
 );
 

@@ -7,7 +7,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("category_type")
+@DiscriminatorValue("CT")
 public class CategoryComment extends AbstractComment {
 
     @Column(name = "category_id")
