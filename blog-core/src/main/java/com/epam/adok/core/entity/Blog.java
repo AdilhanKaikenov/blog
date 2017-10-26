@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "blog")
-public class Blog extends AbstractEntity {
+public class Blog extends BaseEntity {
 
     @Column(name = "title")
     private String title;

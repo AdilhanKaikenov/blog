@@ -3,7 +3,7 @@ package com.epam.adok.core.entity;
 import javax.persistence.*;
 
 @MappedSuperclass
-public abstract class AbstractEntity {
+public abstract class BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,7 +23,7 @@ public abstract class AbstractEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        AbstractEntity that = (AbstractEntity) o;
+        BaseEntity that = (BaseEntity) o;
 
         return id == that.id;
     }

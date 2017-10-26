@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "category")
-public class Category extends AbstractEntity {
+public class Category extends BaseEntity {
 
     @Column(name = "genre")
     private String genre;

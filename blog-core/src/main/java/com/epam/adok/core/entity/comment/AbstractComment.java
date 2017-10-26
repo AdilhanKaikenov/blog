@@ -1,6 +1,6 @@
 package com.epam.adok.core.entity.comment;
 
-import com.epam.adok.core.entity.AbstractEntity;
+import com.epam.adok.core.entity.BaseEntity;
 import com.epam.adok.core.entity.User;
 
 import javax.persistence.*;
@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 @Table(name = "comment")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "comment_type")
-public abstract class AbstractComment extends AbstractEntity {
+public abstract class AbstractComment extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name = "user_id", nullable=false)
