@@ -39,7 +39,7 @@ CREATE TABLE `comment` (
   id int NOT NULL AUTO_INCREMENT UNIQUE,
   `blog_id` INT,
   `category_id` INT,
-  `parent_comment_id` INT NOT NULL,
+  `parent_comment_id` INT,
   `user_id` INT NOT NULL,
   `text` VARCHAR(300) NOT NULL,
   `comment_date` TIMESTAMP NOT NULL,
