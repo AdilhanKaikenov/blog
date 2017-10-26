@@ -2,15 +2,14 @@ package com.epam.adok.core.entity.comment;
 
 import com.epam.adok.core.entity.Category;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("CT")
 public class CategoryComment extends AbstractComment {
 
-    @Column(name = "category_id")
+    @OneToOne
+    @JoinColumn(name="category_id")
     private Category category;
 
     public Category getCategory() {

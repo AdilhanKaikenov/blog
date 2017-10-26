@@ -12,7 +12,8 @@ import java.sql.Timestamp;
 @DiscriminatorColumn(name = "comment_type")
 public abstract class AbstractComment extends AbstractEntity {
 
-    @Column(name = "user_id")
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable=false)
     private User user;
 
     @Column(name = "text")

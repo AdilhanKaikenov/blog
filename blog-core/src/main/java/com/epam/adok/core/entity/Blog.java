@@ -15,7 +15,8 @@ public class Blog extends AbstractEntity {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "user_id")
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User author;
 
     @OneToMany(mappedBy = "primaryKey.blog",
