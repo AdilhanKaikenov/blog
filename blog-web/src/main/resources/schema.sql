@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS comment;
 DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS blog;
 DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS unique_id;
 
 CREATE TABLE `user` (
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
@@ -12,20 +13,25 @@ CREATE TABLE `user` (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE `blog` (
+CREATE TABLE `unique_id` (
   id int NOT NULL AUTO_INCREMENT UNIQUE,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE `blog` (
+  blog_id int NOT NULL AUTO_INCREMENT UNIQUE,
   `title` VARCHAR(30) NOT NULL,
   `content` VARCHAR(300) NOT NULL,
   `user_id` INT NOT NULL,
   `publication_date` TIMESTAMP NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (blog_id)
 );
 
 CREATE TABLE `category` (
-  id int NOT NULL AUTO_INCREMENT UNIQUE,
+  category_id int NOT NULL AUTO_INCREMENT UNIQUE,
   `genre` VARCHAR(30) NOT NULL,
   `added_date` TIMESTAMP NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (category_id)
 );
 
 CREATE TABLE `blog_category_assignment` (
@@ -48,10 +54,11 @@ CREATE TABLE `comment` (
 );
 
 ALTER TABLE `blog` ADD CONSTRAINT `blog_fk0` FOREIGN KEY (`user_id`) REFERENCES `user`(`id`);
-ALTER TABLE `blog_category_assignment` ADD CONSTRAINT `blog_category_assignment_fk0` FOREIGN KEY (`blog_id`) REFERENCES `blog`(`id`);
-ALTER TABLE `blog_category_assignment` ADD CONSTRAINT `blog_category_assignment_fk1` FOREIGN KEY (`category_id`) REFERENCES `category`(`id`);
-ALTER TABLE `comment` ADD CONSTRAINT `comment_fk0` FOREIGN KEY (`blog_id`) REFERENCES `blog`(`id`);
-ALTER TABLE `comment` ADD CONSTRAINT `comment_fk1` FOREIGN KEY (`category_id`) REFERENCES `category`(`id`);
+ALTER TABLE `blog` ADD CONSTRAINT `blog_fk1` FOREIGN KEY (`blog_id`) REFERENCES `unique_id`(`id`);
+ALTER TABLE `category` ADD CONSTRAINT `category_fk0` FOREIGN KEY (`category_id`) REFERENCES `unique_id`(`id`);
+ALTER TABLE `blog_category_assignment` ADD CONSTRAINT `blog_category_assignment_fk0` FOREIGN KEY (`blog_id`) REFERENCES `blog`(`blog_id`);
+ALTER TABLE `blog_category_assignment` ADD CONSTRAINT `blog_category_assignment_fk1` FOREIGN KEY (`category_id`) REFERENCES `category`(`category_id`);
+ALTER TABLE `comment` ADD CONSTRAINT `comment_fk0` FOREIGN KEY (`blog_id`) REFERENCES `blog`(`blog_id`);
+ALTER TABLE `comment` ADD CONSTRAINT `comment_fk1` FOREIGN KEY (`category_id`) REFERENCES `category`(`category_id`);
 ALTER TABLE `comment` ADD CONSTRAINT `comment_fk2` FOREIGN KEY (`parent_comment_id`) REFERENCES `comment`(`id`);
 ALTER TABLE `comment` ADD CONSTRAINT `comment_fk3` FOREIGN KEY (`user_id`) REFERENCES `user`(`id`);
-

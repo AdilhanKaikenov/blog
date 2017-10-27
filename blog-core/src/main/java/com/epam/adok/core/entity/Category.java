@@ -7,7 +7,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "category")
-public class Category extends BaseEntity {
+@PrimaryKeyJoinColumn(name = "category_id", referencedColumnName = "id")
+public class Category extends UniqueIdEntity {
 
     @Column(name = "genre")
     private String genre;

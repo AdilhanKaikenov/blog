@@ -7,7 +7,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "blog")
-public class Blog extends BaseEntity {
+@PrimaryKeyJoinColumn(name = "blog_id", referencedColumnName = "id")
+public class Blog extends UniqueIdEntity {
 
     @Column(name = "title")
     private String title;
