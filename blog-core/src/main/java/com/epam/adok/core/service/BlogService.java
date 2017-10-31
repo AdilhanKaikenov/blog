@@ -15,4 +15,10 @@ public class BlogService {
     public Blog findBlogByID(int id) {
         return blogDao.read(id);
     }
+
+    public void removeBlogByID(int id) {
+        Blog targetBlog = new Blog();
+        targetBlog.setId(id);
+        blogDao.delete(targetBlog);
+    }
 }

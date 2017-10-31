@@ -4,11 +4,9 @@ import com.epam.adok.core.entity.Blog;
 import com.epam.adok.core.service.BlogService;
 
 import javax.ejb.EJB;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/blog")
 public class BlogRestResource {
@@ -19,7 +17,26 @@ public class BlogRestResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     @GET
-    public Blog getBlog(@PathParam("id") int id){
-        return blogService.findBlogByID(id);
+    public Response getBlog(@PathParam("id") int id) {
+
+        Blog blog = blogService.findBlogByID(id);
+
+        if (blog != null) {
+            return Response.ok(blog).build();
+        }
+        return Response.noContent().build();
+    }
+
+    @Path("{id}")
+    @DELETE
+    public Response deleteBlog(@PathParam("id") int id) {
+
+        Blog blog = blogService.findBlogByID(id);
+
+        if (blog != null) {
+            blogService.removeBlogByID(id);
+            return Response.ok().build();
+        }
+        return Response.noContent().build();
     }
 }
