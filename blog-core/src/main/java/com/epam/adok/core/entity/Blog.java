@@ -1,6 +1,7 @@
 package com.epam.adok.core.entity;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name = "blog")
 @PrimaryKeyJoinColumn(name = "blog_id", referencedColumnName = "id")
+@XmlRootElement
 public class Blog extends UniqueIdEntity {
 
     @Column(name = "title")
@@ -21,7 +23,7 @@ public class Blog extends UniqueIdEntity {
     private User author;
 
     @OneToMany(mappedBy = "primaryKey.blog",
-            cascade = CascadeType.ALL)
+            cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<BlogCategoryAssignment> blogCategoryAssignments = new HashSet<>();
 
     @Column(name = "publication_date")
