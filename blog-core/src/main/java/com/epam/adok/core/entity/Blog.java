@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "blog")
-@PrimaryKeyJoinColumn(name = "blog_id", referencedColumnName = "id")
+@PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id")
 @XmlRootElement
 public class Blog extends UniqueIdEntity {
 
@@ -22,9 +22,11 @@ public class Blog extends UniqueIdEntity {
     @JoinColumn(name = "user_id")
     private User author;
 
-    @OneToMany(mappedBy = "primaryKey.blog",
-            cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<BlogCategoryAssignment> blogCategoryAssignments = new HashSet<>();
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Category.class)
+    @JoinTable(name = "blog_category_assignment",
+            joinColumns = {@JoinColumn(name = "blog_id")},
+            inverseJoinColumns = {@JoinColumn(name = "category_id")})
+    private Set<Category> categories;
 
     @Column(name = "publication_date")
     private Timestamp publicationDate;
@@ -53,12 +55,12 @@ public class Blog extends UniqueIdEntity {
         this.author = author;
     }
 
-    public Set<BlogCategoryAssignment> getBlogCategoryAssignments() {
-        return blogCategoryAssignments;
+    public Set<Category> getCategories() {
+        return categories;
     }
 
-    public void setBlogCategoryAssignments(Set<BlogCategoryAssignment> blogCategoryAssignments) {
-        this.blogCategoryAssignments = blogCategoryAssignments;
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 
     public Timestamp getPublicationDate() {

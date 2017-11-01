@@ -1,33 +1,32 @@
 package com.epam.adok.core.entity;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 @Embeddable
 public class BlogCategoryID implements Serializable {
 
-    private Blog blog;
+    @Column(name = "blog_id")
+    private int blogID;
 
-    private Category category;
+    @Column(name = "category_id")
+    private int categoryID;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    public Blog getBlog() {
-        return blog;
+    public int getBlogID() {
+        return blogID;
     }
 
-    public void setBlog(Blog blog) {
-        this.blog = blog;
+    public void setBlogID(int blogID) {
+        this.blogID = blogID;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    public Category getCategory() {
-        return category;
+    public int getCategoryID() {
+        return categoryID;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
     }
 
     @Override
@@ -37,14 +36,14 @@ public class BlogCategoryID implements Serializable {
 
         BlogCategoryID that = (BlogCategoryID) o;
 
-        if (blog != null ? !blog.equals(that.blog) : that.blog != null) return false;
-        return category != null ? category.equals(that.category) : that.category == null;
+        if (blogID != that.blogID) return false;
+        return categoryID == that.categoryID;
     }
 
     @Override
     public int hashCode() {
-        int result = blog != null ? blog.hashCode() : 0;
-        result = 31 * result + (category != null ? category.hashCode() : 0);
+        int result = blogID;
+        result = 31 * result + categoryID;
         return result;
     }
 }

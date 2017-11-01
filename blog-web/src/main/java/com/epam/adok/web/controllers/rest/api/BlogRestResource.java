@@ -14,10 +14,23 @@ public class BlogRestResource {
     @EJB
     private BlogService blogService;
 
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @POST
+    public Response create(Blog blog) {
+
+        if (blog.getId() != 0) {
+            return Response.status(Response.Status.CONFLICT).build();
+        }
+
+        blogService.createBlog(blog);
+        return Response.ok(blog).build();
+    }
+
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     @GET
-    public Response getBlog(@PathParam("id") int id) {
+    public Response read(@PathParam("id") int id) {
 
         Blog blog = blogService.findBlogByID(id);
 
@@ -27,9 +40,24 @@ public class BlogRestResource {
         return Response.noContent().build();
     }
 
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @PUT
+    public Response update(Blog blog) {
+
+        Blog targetBlog = blogService.findBlogByID(blog.getId());
+
+        if (targetBlog == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        blogService.updateBlog(blog);
+        return Response.ok(blog).build();
+    }
+
     @Path("{id}")
     @DELETE
-    public Response deleteBlog(@PathParam("id") int id) {
+    public Response delete(@PathParam("id") int id) {
 
         Blog blog = blogService.findBlogByID(id);
 

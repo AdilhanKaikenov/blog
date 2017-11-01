@@ -12,8 +12,16 @@ public class BlogService {
     @EJB
     private BlogDao blogDao;
 
+    public void createBlog(Blog blog) {
+        blogDao.save(blog);
+    }
+
     public Blog findBlogByID(int id) {
         return blogDao.read(id);
+    }
+
+    public void updateBlog(Blog blog) {
+        blogDao.update(blog);
     }
 
     public void removeBlogByID(int id) {
