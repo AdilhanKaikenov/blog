@@ -22,6 +22,9 @@ public class BlogCategoryAssignment {
     @ManyToOne
     private Category category;
 
+    @Column(name = "date")
+    private Timestamp date;
+
     public BlogCategoryID getPk() {
         return pk;
     }
@@ -46,6 +49,13 @@ public class BlogCategoryAssignment {
         this.category = category;
     }
 
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
