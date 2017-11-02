@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "user")
-public class User extends BaseEntity {
+public class User extends AbstractBaseEntity {
 
     @Column(name = "login")
     private String login;

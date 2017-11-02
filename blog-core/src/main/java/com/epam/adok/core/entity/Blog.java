@@ -22,11 +22,11 @@ public class Blog extends UniqueIdEntity {
     @JoinColumn(name = "user_id")
     private User author;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Category.class)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "blog_category_assignment",
             joinColumns = {@JoinColumn(name = "blog_id")},
             inverseJoinColumns = {@JoinColumn(name = "category_id")})
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 
     @Column(name = "publication_date")
     private Timestamp publicationDate;

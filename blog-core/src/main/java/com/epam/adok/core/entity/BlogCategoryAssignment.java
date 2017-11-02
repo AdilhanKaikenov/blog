@@ -1,24 +1,27 @@
 package com.epam.adok.core.entity;
 
+import com.epam.adok.core.util.interfaces.Identifiable;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "blog_category_assignment")
 @XmlRootElement
-public class BlogCategoryAssignment {
+public class BlogCategoryAssignment implements BaseEntity, Serializable, Identifiable<BlogCategoryID> {
 
     @EmbeddedId
     private BlogCategoryID pk;
 
     @MapsId("blogID")
-    @JoinColumn(name = "blog_id", referencedColumnName = "id")
+    @JoinColumn(name = "blog_id")
     @ManyToOne
     private Blog blog;
 
     @MapsId("categoryID")
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @JoinColumn(name = "category_id")
     @ManyToOne
     private Category category;
 
@@ -26,11 +29,23 @@ public class BlogCategoryAssignment {
     private Timestamp date;
 
     public BlogCategoryID getPk() {
-        return pk;
+        return this.pk;
     }
 
-    public void setPk(BlogCategoryID pk) {
+    public void setPk(final BlogCategoryID pk) {
         this.pk = pk;
+    }
+
+    @Override
+    @Transient
+    public BlogCategoryID getId() {
+        return this.pk;
+    }
+
+    @Override
+    @Transient
+    public void setId(final BlogCategoryID id) {
+        this.pk = id;
     }
 
     public Blog getBlog() {

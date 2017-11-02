@@ -29,6 +29,14 @@ public class BlogCategoryID implements Serializable {
         this.categoryID = categoryID;
     }
 
+    public BlogCategoryID(int blogID, int categoryID) {
+        this.blogID = blogID;
+        this.categoryID = categoryID;
+    }
+
+    public BlogCategoryID() {
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
