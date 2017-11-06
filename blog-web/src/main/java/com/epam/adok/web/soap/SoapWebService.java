@@ -12,7 +12,7 @@ import java.util.Set;
 @WebService
 public interface SoapWebService<T extends AbstractBaseEntity> {
 
-    List<T> getAllByCategoryOrPeriod(@WebParam(name = "categories")Set<Category> categories,
+        List<T> getAllByCategoryOrPeriod(@WebParam(name = "categories")Set<Category> categories,
                                      @WebParam(name = "from") Date from,
                                      @WebParam(name = "to") Date to);
 

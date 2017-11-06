@@ -1,8 +1,10 @@
 package com.epam.adok.web.soap;
 
+import com.epam.adok.core.dao.impl.blog.BlogFilter;
 import com.epam.adok.core.entity.Blog;
 import com.epam.adok.core.entity.Category;
 import com.epam.adok.core.service.BlogService;
+import com.epam.adok.core.util.DateRange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +27,7 @@ public class BlogSoapWS implements SoapWebService<Blog> {
     @Override
     public List<Blog> getAllByCategoryOrPeriod(Set<Category> categories, Date from, Date to) {
         log.info("Entering getAllByCategoryOrPeriod() method.");
-        return blogService.findAllBlogsByParameters(categories, from, to);
+        BlogFilter blogFilter = new BlogFilter(categories, new DateRange(from, to));
+        return blogService.findAllBlogsByParameters(blogFilter);
     }
 }
