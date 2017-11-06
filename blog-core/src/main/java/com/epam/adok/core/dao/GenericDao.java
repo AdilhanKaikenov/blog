@@ -1,12 +1,12 @@
 package com.epam.adok.core.dao;
 
-import com.epam.adok.core.entity.BaseEntity;
+import com.epam.adok.core.entity.AbstractBaseEntity;
 import com.mysema.query.jpa.impl.JPAQuery;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-public abstract class GenericDao<T extends BaseEntity> implements Dao<T> {
+public abstract class GenericDao<T extends AbstractBaseEntity> implements Dao<T> {
 
     @PersistenceContext(unitName = "mySqlPU")
     private EntityManager entityManager;

@@ -1,8 +1,8 @@
 package com.epam.adok.core.dao;
 
-import com.epam.adok.core.entity.BaseEntity;
+import com.epam.adok.core.entity.AbstractBaseEntity;
 
-public interface Dao<T  extends BaseEntity> {
+public interface Dao<T  extends AbstractBaseEntity> {
 
     void save(T t);
 

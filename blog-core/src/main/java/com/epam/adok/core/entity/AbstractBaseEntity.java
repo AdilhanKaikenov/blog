@@ -3,7 +3,7 @@ package com.epam.adok.core.entity;
 import javax.persistence.*;
 
 @MappedSuperclass
-public abstract class AbstractBaseEntity implements BaseEntity {
+public abstract class AbstractBaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

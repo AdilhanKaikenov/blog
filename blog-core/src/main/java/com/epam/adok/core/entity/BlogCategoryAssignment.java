@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "blog_category_assignment")
 @XmlRootElement
-public class BlogCategoryAssignment implements BaseEntity, Serializable, Identifiable<BlogCategoryID> {
+public class BlogCategoryAssignment implements Serializable, Identifiable<BlogCategoryID> {
 
     @EmbeddedId
     private BlogCategoryID pk;
