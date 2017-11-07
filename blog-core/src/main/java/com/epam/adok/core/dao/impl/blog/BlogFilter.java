@@ -2,11 +2,10 @@ package com.epam.adok.core.dao.impl.blog;
 
 import com.epam.adok.core.entity.Category;
 import com.epam.adok.core.util.DateRange;
-import com.epam.adok.core.util.interfaces.EntityFilter;
 
 import java.util.Set;
 
-public class BlogFilter implements EntityFilter {
+public class BlogFilter {
 
     private Set<Category> categories;
 
