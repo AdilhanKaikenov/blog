@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 import java.util.List;
 
 @Stateless
@@ -18,9 +19,9 @@ public class BlogDao extends GenericDao<Blog> {
 
     @Override
     public Blog read(int id) {
-        JPAQuery query = getJpaQuery();
-        QBlog qBlog = getQBlog();
-        return query.from(qBlog).where(qBlog.id.eq(id)).uniqueResult(qBlog);
+        Query query = getEntityManager().createNamedQuery("Blog.readById");
+        query.setParameter("id", id);
+        return (Blog) query.getSingleResult();
     }
 
     private QBlog getQBlog() {
