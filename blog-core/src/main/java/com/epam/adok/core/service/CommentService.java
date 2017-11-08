@@ -1,6 +1,6 @@
 package com.epam.adok.core.service;
 
-import com.epam.adok.core.dao.impl.comment.CommentDao;
+import com.epam.adok.core.dao.impl.CommentDao;
 import com.epam.adok.core.entity.comment.AbstractComment;
 
 import javax.ejb.EJB;

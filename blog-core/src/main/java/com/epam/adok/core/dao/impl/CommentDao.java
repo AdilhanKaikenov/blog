@@ -1,4 +1,4 @@
-package com.epam.adok.core.dao.impl.comment;
+package com.epam.adok.core.dao.impl;
 
 import com.epam.adok.core.dao.GenericDao;
 import com.epam.adok.core.entity.comment.AbstractComment;
