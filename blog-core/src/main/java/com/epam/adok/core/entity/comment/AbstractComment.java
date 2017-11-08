@@ -7,6 +7,9 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "AbstractComment.readById", query = "select comment from AbstractComment comment where comment.id = :id")
+})
 @Table(name = "comment")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "comment_type")
