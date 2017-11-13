@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS blog_category_assignment;
 DROP TABLE IF EXISTS comment;
 DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS notification;
 DROP TABLE IF EXISTS blog;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS unique_id;
@@ -53,6 +54,15 @@ CREATE TABLE `comment` (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE `notification` (
+  id int NOT NULL AUTO_INCREMENT UNIQUE,
+  `user_id` INT NOT NULL,
+  `blog_id` INT NOT NULL,
+  `text` VARCHAR(300) NOT NULL,
+  `date` TIMESTAMP NOT NULL,
+  PRIMARY KEY (id)
+);
+
 ALTER TABLE `blog` ADD CONSTRAINT `blog_fk0` FOREIGN KEY (`user_id`) REFERENCES `user`(`id`);
 ALTER TABLE `blog` ADD CONSTRAINT `blog_fk1` FOREIGN KEY (`id`) REFERENCES `unique_id`(`id`);
 ALTER TABLE `category` ADD CONSTRAINT `category_fk0` FOREIGN KEY (`id`) REFERENCES `unique_id`(`id`);
@@ -62,3 +72,5 @@ ALTER TABLE `comment` ADD CONSTRAINT `comment_fk0` FOREIGN KEY (`blog_id`) REFER
 ALTER TABLE `comment` ADD CONSTRAINT `comment_fk1` FOREIGN KEY (`category_id`) REFERENCES `category`(`id`);
 ALTER TABLE `comment` ADD CONSTRAINT `comment_fk2` FOREIGN KEY (`parent_comment_id`) REFERENCES `comment`(`id`);
 ALTER TABLE `comment` ADD CONSTRAINT `comment_fk3` FOREIGN KEY (`user_id`) REFERENCES `user`(`id`);
+ALTER TABLE `notification` ADD CONSTRAINT `notification_fk0` FOREIGN KEY (`blog_id`) REFERENCES `blog`(`id`);
+ALTER TABLE `notification` ADD CONSTRAINT `notification_fk1` FOREIGN KEY (`user_id`) REFERENCES `user`(`id`);
