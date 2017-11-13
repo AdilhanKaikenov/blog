@@ -1,0 +1,5 @@
+<beans>
+    <interceptors>
+        <class>com.epam.adok.core.annotation.log.LoggingInterceptor</class>
+    </interceptors>
+</beans>
