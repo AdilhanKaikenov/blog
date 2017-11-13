@@ -5,7 +5,7 @@ import com.epam.adok.core.util.interfaces.Identifiable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "blog_category_assignment")
@@ -26,7 +26,7 @@ public class BlogCategoryAssignment implements Serializable, Identifiable<BlogCa
     private Category category;
 
     @Column(name = "date")
-    private Timestamp date;
+    private Date date;
 
     public BlogCategoryID getPk() {
         return this.pk;
@@ -64,11 +64,11 @@ public class BlogCategoryAssignment implements Serializable, Identifiable<BlogCa
         this.category = category;
     }
 
-    public Timestamp getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(Date date) {
         this.date = date;
     }
     @Override

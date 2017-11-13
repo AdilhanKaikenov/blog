@@ -4,7 +4,7 @@ import com.epam.adok.core.entity.AbstractBaseEntity;
 import com.epam.adok.core.entity.User;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @NamedQueries({
@@ -23,7 +23,7 @@ public abstract class AbstractComment extends AbstractBaseEntity {
     private String text;
 
     @Column(name = "comment_date")
-    private Timestamp commentDate;
+    private Date commentDate;
 
     public User getUser() {
         return user;
@@ -41,11 +41,11 @@ public abstract class AbstractComment extends AbstractBaseEntity {
         this.text = text;
     }
 
-    public Timestamp getCommentDate() {
+    public Date getCommentDate() {
         return commentDate;
     }
 
-    public void setCommentDate(Timestamp commentDate) {
+    public void setCommentDate(Date commentDate) {
         this.commentDate = commentDate;
     }
 }

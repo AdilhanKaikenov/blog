@@ -2,7 +2,7 @@ package com.epam.adok.core.entity;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,7 +32,7 @@ public class Blog extends UniqueIdEntity {
     private Set<Category> categories = new HashSet<>();
 
     @Column(name = "publication_date")
-    private Timestamp publicationDate;
+    private Date publicationDate;
 
     public String getTitle() {
         return title;
@@ -66,11 +66,11 @@ public class Blog extends UniqueIdEntity {
         this.categories = categories;
     }
 
-    public Timestamp getPublicationDate() {
+    public Date getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(Timestamp publicationDate) {
+    public void setPublicationDate(Date publicationDate) {
         this.publicationDate = publicationDate;
     }
 }

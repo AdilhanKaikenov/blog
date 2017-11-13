@@ -4,7 +4,6 @@ import com.epam.adok.core.entity.Category;
 import com.epam.adok.core.entity.QBlog;
 import com.mysema.query.types.expr.BooleanExpression;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 public final class BlogPredicates {
@@ -14,11 +13,11 @@ public final class BlogPredicates {
     }
 
     public static BooleanExpression isPublishedDateAfter(QBlog qBlog, Date from) {
-        return qBlog.publicationDate.after(new Timestamp(from.getTime()));
+        return qBlog.publicationDate.after(from);
     }
 
     public static BooleanExpression isPublishedDateBefore(QBlog qBlog, Date to) {
-        return qBlog.publicationDate.before(new Timestamp(to.getTime()));
+        return qBlog.publicationDate.before(to);
     }
 
 }

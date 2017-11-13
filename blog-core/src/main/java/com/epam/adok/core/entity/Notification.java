@@ -2,7 +2,7 @@ package com.epam.adok.core.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "notification")
@@ -20,9 +20,9 @@ public class Notification extends AbstractBaseEntity implements Serializable {
     private String text;
 
     @Column(name = "date")
-    private Timestamp date;
+    private Date date;
 
-    public Notification(User user, Blog blog, String text, Timestamp date) {
+    public Notification(User user, Blog blog, String text, Date date) {
         this.user = user;
         this.blog = blog;
         this.text = text;
@@ -56,11 +56,11 @@ public class Notification extends AbstractBaseEntity implements Serializable {
         this.text = text;
     }
 
-    public Timestamp getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }

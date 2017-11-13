@@ -1,10 +1,11 @@
 package com.epam.adok.core.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Date;
 
 @Entity
 @Table(name = "category")
@@ -16,7 +17,7 @@ public class Category extends UniqueIdEntity {
     private String genre;
 
     @Column(name = "added_date")
-    private Timestamp addedDate;
+    private Date addedDate;
 
     public String getGenre() {
         return genre;
@@ -26,11 +27,11 @@ public class Category extends UniqueIdEntity {
         this.genre = genre;
     }
 
-    public Timestamp getAddedDate() {
+    public Date getAddedDate() {
         return addedDate;
     }
 
-    public void setAddedDate(Timestamp addedDate) {
+    public void setAddedDate(Date addedDate) {
         this.addedDate = addedDate;
     }
 
