@@ -73,4 +73,15 @@ public class Blog extends UniqueIdEntity {
     public void setPublicationDate(Date publicationDate) {
         this.publicationDate = publicationDate;
     }
+
+    @Override
+    public String toString() {
+        return "Blog{" +
+                "title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", author=" + author +
+                ", categories=" + categories +
+                ", publicationDate=" + publicationDate +
+                '}';
+    }
 }

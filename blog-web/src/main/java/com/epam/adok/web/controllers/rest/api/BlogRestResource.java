@@ -1,5 +1,6 @@
 package com.epam.adok.web.controllers.rest.api;
 
+import com.epam.adok.core.annotation.log.Log;
 import com.epam.adok.core.entity.Blog;
 import com.epam.adok.core.service.BlogService;
 
@@ -8,6 +9,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@Log
 @Path("/blog")
 public class BlogRestResource {
 
