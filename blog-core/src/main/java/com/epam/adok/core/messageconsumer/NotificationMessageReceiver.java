@@ -1,4 +1,4 @@
-package com.epam.adok.core.mconsumer;
+package com.epam.adok.core.messageconsumer;
 
 import com.epam.adok.core.entity.Notification;
 import org.slf4j.Logger;
@@ -17,7 +17,7 @@ import java.io.Serializable;
 @MessageDriven(
         name = "NotificationMessageReceiver",
         description = "MDBean receives messages from Notifications Queue",
-        mappedName = "queue/NotificationsQueue",
+        mappedName = "java:/jms/queue/NotificationsQueue",
         messageListenerInterface = MessageListener.class,
         activationConfig =
                 {
@@ -39,6 +39,7 @@ public class NotificationMessageReceiver implements MessageListener {
 
     @Override
     public void onMessage(Message message) {
+        log.info("Entering onMessage() method...");
         try {
             if (!(message instanceof ObjectMessage)) {
                 log.error("Message should be instance of ObjectMessage class");
@@ -54,7 +55,7 @@ public class NotificationMessageReceiver implements MessageListener {
             Notification notification = (Notification) object;
 
             entityManager.persist(notification);
-
+            log.info("Notification is received.");
         } catch (JMSException e) {
             e.printStackTrace(); // TODO:
         }

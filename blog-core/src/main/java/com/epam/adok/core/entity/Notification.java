@@ -1,18 +1,17 @@
 package com.epam.adok.core.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "notification")
-public class Notification extends AbstractBaseEntity implements Serializable {
+public class Notification extends AbstractBaseEntity {
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "blog_id")
     private Blog blog;
 
