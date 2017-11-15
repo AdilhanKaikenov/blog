@@ -12,8 +12,6 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 
 @MessageDriven(
@@ -35,9 +33,6 @@ import java.io.Serializable;
 public class NotificationMessageReceiver implements MessageListener {
 
     private static final Logger log = LoggerFactory.getLogger(NotificationMessageReceiver.class);
-
-    @PersistenceContext(unitName = "mySqlPU")
-    private EntityManager entityManager;
 
     @EJB
     private NotificationDao notificationDao;
