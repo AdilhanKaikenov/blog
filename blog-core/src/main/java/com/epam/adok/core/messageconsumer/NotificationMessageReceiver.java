@@ -1,10 +1,12 @@
 package com.epam.adok.core.messageconsumer;
 
+import com.epam.adok.core.dao.impl.NotificationDao;
 import com.epam.adok.core.entity.Notification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.ActivationConfigProperty;
+import javax.ejb.EJB;
 import javax.ejb.MessageDriven;
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -37,6 +39,9 @@ public class NotificationMessageReceiver implements MessageListener {
     @PersistenceContext(unitName = "mySqlPU")
     private EntityManager entityManager;
 
+    @EJB
+    private NotificationDao notificationDao;
+
     @Override
     public void onMessage(Message message) {
         log.info("Entering onMessage() method...");
@@ -54,7 +59,7 @@ public class NotificationMessageReceiver implements MessageListener {
 
             Notification notification = (Notification) object;
 
-            entityManager.persist(notification);
+            notificationDao.save(notification);
             log.info("Notification is received.");
         } catch (JMSException e) {
             e.printStackTrace(); // TODO:
