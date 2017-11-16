@@ -48,4 +48,13 @@ public abstract class AbstractComment extends AbstractBaseEntity {
     public void setCommentDate(Date commentDate) {
         this.commentDate = commentDate;
     }
+
+    @Override
+    public String toString() {
+        return "AbstractComment{" +
+                "user=" + user +
+                ", text='" + text + '\'' +
+                ", commentDate=" + commentDate +
+                '}';
+    }
 }

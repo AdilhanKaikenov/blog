@@ -1,5 +1,6 @@
 package com.epam.adok.core.service;
 
+import com.epam.adok.core.annotation.log.Log;
 import com.epam.adok.core.dao.impl.blog.BlogDao;
 import com.epam.adok.core.dao.impl.blog.BlogFilter;
 import com.epam.adok.core.entity.Blog;
@@ -8,6 +9,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.List;
 
+@Log
 @Stateless
 public class BlogService {
 

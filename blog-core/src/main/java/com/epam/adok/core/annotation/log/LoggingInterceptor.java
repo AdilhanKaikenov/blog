@@ -17,7 +17,6 @@ public class LoggingInterceptor {
     public Object logAll(InvocationContext context) throws Exception {
 
         String methodName = context.getMethod().getName();
-        String returnTypeName = context.getMethod().getReturnType().getName();
 
         log.info("Entering '{}' method...", methodName);
 
@@ -29,9 +28,10 @@ public class LoggingInterceptor {
                 log.info(" ---> {}", parameter);
             }
         }
+        Object proceed = context.proceed();
 
-        log.info("Method '{}' returns '{}' type.", methodName, returnTypeName);
+        log.info("Method '{}' returns '{}'.", methodName, proceed);
 
-        return context.proceed();
+        return proceed;
     }
 }

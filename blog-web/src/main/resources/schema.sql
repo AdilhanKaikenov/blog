@@ -58,7 +58,6 @@ CREATE TABLE `notification` (
   id int NOT NULL AUTO_INCREMENT UNIQUE,
   `user_id` INT NOT NULL,
   `blog_id` INT NOT NULL,
-  `text` VARCHAR(300) NOT NULL,
   `date` TIMESTAMP NOT NULL,
   PRIMARY KEY (id)
 );

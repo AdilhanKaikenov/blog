@@ -35,4 +35,11 @@ public class Category extends UniqueIdEntity {
         this.addedDate = addedDate;
     }
 
+    @Override
+    public String toString() {
+        return "Category{" +
+                "genre='" + genre + '\'' +
+                ", addedDate=" + addedDate +
+                '}';
+    }
 }

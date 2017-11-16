@@ -11,8 +11,7 @@ import javax.ejb.MessageDriven;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
-import javax.jms.ObjectMessage;
-import java.io.Serializable;
+import javax.jms.StreamMessage;
 
 @MessageDriven(
         name = "NotificationMessageReceiver",
@@ -41,20 +40,17 @@ public class NotificationMessageReceiver implements MessageListener {
     public void onMessage(Message message) {
         log.info("Entering onMessage() method...");
         try {
-            if (!(message instanceof ObjectMessage)) {
-                log.error("Message should be instance of ObjectMessage class");
+            if (!(message instanceof StreamMessage)) {
+                log.error("Message should be instance of StreamMessage class");
                 return;
             }
-            ObjectMessage objectMessage = (ObjectMessage) message;
-            Serializable object = objectMessage.getObject();
-            if (!(object instanceof Notification)) {
-                log.error("Not expected instance in message");
-                return;
-            }
+            StreamMessage streamMessage = (StreamMessage) message;
+            int notificationID = streamMessage.getIntProperty("notificationID");
 
-            Notification notification = (Notification) object;
+            Notification notification = notificationDao.read(notificationID);
 
-            notificationDao.save(notification);
+            log.info("notification id : {}", notification.getId());
+
             log.info("Notification is received.");
         } catch (JMSException e) {
             e.printStackTrace(); // TODO:

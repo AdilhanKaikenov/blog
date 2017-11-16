@@ -1,19 +1,13 @@
 package com.epam.adok.web.controllers.rest.api;
 
-import com.epam.adok.core.entity.Blog;
-import com.epam.adok.core.entity.Notification;
-import com.epam.adok.core.entity.User;
 import com.epam.adok.core.entity.comment.BlogComment;
 import com.epam.adok.core.entity.comment.CategoryComment;
-import com.epam.adok.core.messageproducer.NotificationMessageSender;
 import com.epam.adok.core.service.CommentService;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.text.MessageFormat;
-import java.util.Date;
 
 @Path("/comment")
 public class CommentRestResource {
@@ -23,9 +17,6 @@ public class CommentRestResource {
 
     @EJB
     private CommentService<CategoryComment> categoryCommentService;
-
-    @EJB
-    private NotificationMessageSender messageSender;
 
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/blog/{id}")
@@ -64,11 +55,6 @@ public class CommentRestResource {
         }
 
         blogCommentService.submitComment(comment);
-
-        Notification notification = createNotification(comment);
-
-        messageSender.sendNotificationMessage(notification);
-
         return Response.ok(comment).build();
     }
 
@@ -84,23 +70,5 @@ public class CommentRestResource {
 
         categoryCommentService.submitComment(comment);
         return Response.ok(comment).build();
-    }
-
-    private Notification createNotification(BlogComment comment) {
-        Notification notification = new Notification();
-        User commentAuthor = comment.getUser();
-        Blog commentBlog = comment.getBlog();
-        Date date = new Date();
-        String message = MessageFormat.format(
-                "User {0} left a comment under your blog {1} on {2}",
-                commentAuthor.getLogin(),
-                commentBlog.getTitle(),
-                date
-        );
-        notification.setUser(commentAuthor);
-        notification.setBlog(commentBlog);
-        notification.setDate(date);
-        notification.setText(message);
-        return notification;
     }
 }

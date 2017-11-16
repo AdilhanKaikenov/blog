@@ -41,4 +41,13 @@ public class User extends AbstractBaseEntity {
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", registrationDate=" + registrationDate +
+                '}';
+    }
 }

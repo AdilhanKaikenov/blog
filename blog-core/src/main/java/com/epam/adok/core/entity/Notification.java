@@ -15,16 +15,12 @@ public class Notification extends AbstractBaseEntity {
     @JoinColumn(name = "blog_id")
     private Blog blog;
 
-    @Column(name = "text")
-    private String text;
-
     @Column(name = "date")
     private Date date;
 
-    public Notification(User user, Blog blog, String text, Date date) {
+    public Notification(User user, Blog blog, Date date) {
         this.user = user;
         this.blog = blog;
-        this.text = text;
         this.date = date;
     }
 
@@ -45,14 +41,6 @@ public class Notification extends AbstractBaseEntity {
 
     public void setBlog(Blog blog) {
         this.blog = blog;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 
     public Date getDate() {
