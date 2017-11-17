@@ -15,4 +15,9 @@ public class CommentDao<T extends AbstractComment> extends GenericDao<T> {
         query.setParameter("id", id);
         return (T) query.getSingleResult();
     }
+
+    @Override
+    protected Query getReadAllNamedQuery() {
+        return getEntityManager().createNamedQuery("AbstractComment.readAll");
+    }
 }

@@ -8,7 +8,8 @@ import java.util.Date;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "AbstractComment.readById", query = "select comment from AbstractComment comment where comment.id = :id")
+        @NamedQuery(name = "AbstractComment.readById", query = "SELECT comment FROM AbstractComment comment WHERE comment.id = :id"),
+        @NamedQuery(name = "AbstractComment.readAll", query = "SELECT comment FROM AbstractComment comment")
 })
 @Table(name = "comment")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -16,7 +17,7 @@ import java.util.Date;
 public abstract class AbstractComment extends AbstractBaseEntity {
 
     @OneToOne
-    @JoinColumn(name = "user_id", nullable=false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Column(name = "text")

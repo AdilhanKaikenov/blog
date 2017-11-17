@@ -8,7 +8,8 @@ import java.util.Set;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Blog.readById", query = "select blog from Blog blog where blog.id = :id")
+        @NamedQuery(name = "Blog.readById", query = "SELECT blog FROM Blog blog WHERE blog.id = :id"),
+        @NamedQuery(name = "Blog.readAll", query = "SELECT blog FROM Blog blog")
 })
 @Table(name = "blog")
 @PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id")

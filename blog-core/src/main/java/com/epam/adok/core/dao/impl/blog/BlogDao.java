@@ -35,4 +35,9 @@ public class BlogDao extends GenericDao<Blog> {
         log.info("Leaving readByParameters() method.");
         return jpaQuery.list(getQBlog());
     }
+
+    @Override
+    protected Query getReadAllNamedQuery() {
+        return getEntityManager().createNamedQuery("Blog.readAll");
+    }
 }

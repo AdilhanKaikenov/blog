@@ -1,7 +1,7 @@
 package com.epam.adok.core.messageconsumer;
 
-import com.epam.adok.core.dao.impl.NotificationDao;
 import com.epam.adok.core.entity.Notification;
+import com.epam.adok.core.service.NotificationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +34,7 @@ public class NotificationMessageReceiver implements MessageListener {
     private static final Logger log = LoggerFactory.getLogger(NotificationMessageReceiver.class);
 
     @EJB
-    private NotificationDao notificationDao;
+    private NotificationService notificationService;
 
     @Override
     public void onMessage(Message message) {
@@ -47,7 +47,7 @@ public class NotificationMessageReceiver implements MessageListener {
             StreamMessage streamMessage = (StreamMessage) message;
             int notificationID = streamMessage.getIntProperty("notificationID");
 
-            Notification notification = notificationDao.read(notificationID);
+            Notification notification = notificationService.readNotificationByID(notificationID);
 
             log.info("notification id : {}", notification.getId());
 

@@ -5,6 +5,8 @@ import com.mysema.query.jpa.impl.JPAQuery;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
 
 public abstract class GenericDao<T extends AbstractBaseEntity> implements Dao<T> {
 
@@ -33,4 +35,12 @@ public abstract class GenericDao<T extends AbstractBaseEntity> implements Dao<T>
     public void delete(T t) {
         entityManager.remove(entityManager.contains(t) ? t : entityManager.merge(t));
     }
+
+    @Override
+    public List<T> readAll() {
+        Query query = getReadAllNamedQuery();
+        return query.getResultList();
+    }
+
+    protected abstract Query getReadAllNamedQuery();
 }
