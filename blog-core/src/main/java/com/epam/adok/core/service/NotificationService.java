@@ -19,7 +19,7 @@ public class NotificationService {
         return notificationDao.read(id);
     }
 
-    public void deleteAllNotifocationsByCreatedOnBefore(Date expiryDate) {
+    public void deleteAllNotificationsByCreatedOnBefore(Date expiryDate) {
         notificationDao.deleteByCreatedOnBefore(expiryDate);
     }
 }
