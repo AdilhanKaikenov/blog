@@ -17,7 +17,7 @@ public class StringConvertersHolder {
 
     private static final Logger log = LoggerFactory.getLogger(StringConvertersHolder.class);
 
-    private static Map<Type, StringConverter<?>> converters = new HashMap<>();
+    private static final Map<Type, StringConverter<?>> converters = new HashMap<>();
 
     public StringConvertersHolder() {
         log.info("Entering StringConvertersHolder() constructor...");
