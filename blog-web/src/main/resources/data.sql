@@ -1,5 +1,5 @@
-INSERT INTO user(id, login, password, date_of_registration) VALUES (1, 'User1', 'Password', '2017-10-31 16:40:31');
-INSERT INTO user(id, login, password, date_of_registration) VALUES (2, 'User2', 'Password', '2017-10-31 16:40:31');
+INSERT INTO user(id, login, password, email, date_of_registration) VALUES (1, 'User1', 'Password', 'adilhan_kai@mail.ru','2017-10-31 16:40:31');
+INSERT INTO user(id, login, password, email, date_of_registration) VALUES (2, 'User2', 'Password', 'adilhan_kai@mail.ru','2017-10-31 16:40:31');
 
 INSERT INTO unique_id(id) VALUES (1);
 INSERT INTO unique_id(id) VALUES (2);

@@ -10,6 +10,7 @@ CREATE TABLE `user` (
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   `login` VARCHAR(30) NOT NULL,
   `password` VARCHAR(30) NOT NULL,
+  `email` VARCHAR(40) NOT NULL,
   `date_of_registration` TIMESTAMP NOT NULL,
   PRIMARY KEY (id)
 );
