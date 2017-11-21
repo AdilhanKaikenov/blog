@@ -16,7 +16,7 @@ Project for practice.
 4. Inheritance - SINGLE_TABLE, JOINED
 * Web Services:
 1. Java API for RESTful Web Services
-2. Java API for XML Web Services
+2. Java API for XML Web Services (SOAP)
 * Gradle
 * JBoss (wildfly-10.1.0.Final)
 * Slf4j + Log4j
