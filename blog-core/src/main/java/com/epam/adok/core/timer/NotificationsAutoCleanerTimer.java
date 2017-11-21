@@ -19,11 +19,11 @@ public class NotificationsAutoCleanerTimer {
     private static final Logger log = LoggerFactory.getLogger(NotificationsAutoCleanerTimer.class);
 
     @Inject
-    @Value(key = "one.day.in.milliseconds")
+    @Value(propertiesSource = "timer.properties", key = "one.day.in.milliseconds")
     private Long oneDayInMilliseconds;
 
     @Inject
-    @Value(key = "number.of.weeks.timer")
+    @Value(propertiesSource = "timer.properties", key = "number.of.weeks.timer")
     private Integer numberOfWeeks;
 
     @Resource
