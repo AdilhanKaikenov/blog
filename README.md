@@ -20,6 +20,7 @@ Project for practice.
 * Gradle
 * JBoss (wildfly-10.1.0.Final)
 * Slf4j + Log4j
+* Slf4j + Log4j
 
 Приложение - Блог:
 ------------------
